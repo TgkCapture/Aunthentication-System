@@ -36,17 +36,15 @@ def register(request):
             messages.error(request, "Username must be alphanumeric")
             return redirect('home')
         else:
-            user = User.objects.create_user(username=username, first_name=firstName, last_name=lastName, email=email, password=password)
-            user.save()
+            myuser = User.objects.create_user(username=username, first_name=firstName, last_name=lastName, email=email, password=password)
+            myuser.save()
             messages.success(request, "You are now registered , verify your email to login")
-
-
 
             # Welcome Email
             subject = 'Welcome to Django Authentication'
-            message = 'Hi ' + firstName + ', welcome to Django Authentication'
+            message = 'Hi ' + myuser.first_name + ', welcome to Django Authentication'
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email]
+            recipient_list = [myuser.email]
             send_mail( subject, message, email_from, recipient_list, fail_silently=False )
 
 
