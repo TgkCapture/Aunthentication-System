@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+WELCOME to DJANGO AUTHENTICATION SYSTEM
+
+Hello {{ name }}!
+
+Please confirm your email by clicking the link below
+
+Confirmation Link: http://www{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}
